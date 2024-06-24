@@ -14,8 +14,8 @@ class _HomepageState extends State<Homepage> {
     return Scaffold(
       bottomNavigationBar: ClipRRect(
         borderRadius: const BorderRadius.only(
-          topLeft: Radius.circular(30.0),
-          topRight: Radius.circular(30.0),
+          topLeft: Radius.circular(60.0),
+          topRight: Radius.circular(60.0),
         ),
         child: Container(
           color: Colors.black,
