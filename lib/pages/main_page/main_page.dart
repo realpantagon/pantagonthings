@@ -1,16 +1,47 @@
 // main.dart
+import 'dart:convert';
 import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:http/http.dart' as http;
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:pantagonthings/pages/ItemList.dart';
 import 'package:pantagonthings/pages/main_page/airtable_state.dart';
 import 'package:pantagonthings/pages/main_page/main_bloc.dart';
 import 'package:pantagonthings/pages/main_page/airtable_event.dart';
 import 'package:pantagonthings/repository/airtable_repository.dart';
+import 'add_item_dialog.dart';
 
 class Mainpage extends StatelessWidget {
   const Mainpage({Key? key}) : super(key: key);
+
+  Future<void> _addItem(BuildContext context) async {
+    final newItem = await showAddItemDialog(context);
+    if (newItem != null) {
+      final response = await http.post(
+        Uri.parse('https://api.airtable.com/v0/appUTL1IglUyPejRu/List'),
+        headers: {
+          'Authorization':
+              'Bearer patAISgcZTgxiBMYV.56a388e5a648983751a2681138c78f884284fc54a004033211487631fa2f077c',
+          'Content-Type': 'application/json',
+        },
+        body: json.encode({
+          'records': [
+            {
+              'fields': newItem,
+            },
+          ],
+        }),
+      );
+
+      if (response.statusCode == 200) {
+        // Reload the data after adding the new item
+        BlocProvider.of<AirtableBloc>(context).add(FetchAirtableData());
+      } else {
+        log('Failed to add item: ${response.body}');
+      }
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -105,7 +136,7 @@ class Mainpage extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 16),
                       child: GestureDetector(
-                        onTap: () => log("Add button clicked"),
+                        onTap: () => _addItem(context),
                         child: Container(
                           padding: const EdgeInsets.all(32),
                           decoration: BoxDecoration(

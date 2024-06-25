@@ -11,7 +11,7 @@ class AirtableRecord {
   final String warrantyTime;
   final String discount;
   final String name;
-  final String created;
+  final DateTime created;
 
   AirtableRecord({
     required this.id,
@@ -39,11 +39,11 @@ class AirtableRecord {
       price: json['fields']['Price'] ?? '',
       total: (json['fields']['Total'] is int)
           ? (json['fields']['Total'] as int).toDouble()
-          : double.tryParse(json['fields']['Total'].toString()) ?? 0.0,
+          : double.tryParse(json['fields']['Net'].toString()) ?? 0.0,
       warrantyTime: json['fields']['Warranty Time'] ?? '',
       discount: json['fields']['Discount'] ?? '',
       name: json['fields']['Name'] ?? '',
-      created: json['fields']['Created'] ?? '',
+      created: DateTime.parse(json['fields']['Created']),
     );
   }
 }

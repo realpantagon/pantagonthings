@@ -84,11 +84,12 @@ class ItemList extends StatelessWidget {
               child: Container(
                 padding: const EdgeInsets.all(16),
                 decoration: BoxDecoration(
-                  color: const Color.fromARGB(255, 230, 230, 230),
+                  color: Color.fromARGB(255, 255, 255, 255),
                   borderRadius: BorderRadius.circular(8),
                   boxShadow: [
                     BoxShadow(
-                      color: Colors.grey.withOpacity(0.5),
+                      color: const Color.fromARGB(255, 214, 214, 214)
+                          .withOpacity(0.5),
                       spreadRadius: 2,
                       blurRadius: 5,
                       offset: const Offset(0, 3),
