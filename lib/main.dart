@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:pantagonthings/homepage.dart';
+import 'package:pantagonthings/pages/homepage.dart';
 
 void main() {
   runApp(const MyApp());
