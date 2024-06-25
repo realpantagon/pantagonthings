@@ -1,5 +1,8 @@
 import 'package:circle_nav_bar/circle_nav_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:pantagonthings/pages/favoritepage.dart';
+import 'package:pantagonthings/pages/mainpage.dart';
+import 'package:pantagonthings/pages/searchpage.dart';
 
 class Homepage extends StatefulWidget {
   const Homepage({Key? key}) : super(key: key);
@@ -9,9 +12,32 @@ class Homepage extends StatefulWidget {
 }
 
 class _HomepageState extends State<Homepage> {
+  int _selectedIndex = 0;
+  final PageController _pageController = PageController();
+
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+    _pageController.jumpToPage(index);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      body: PageView(
+        controller: _pageController,
+        onPageChanged: (index) {
+          setState(() {
+            _selectedIndex = index;
+          });
+        },
+        children: const [
+          Mainpage(),
+          Searchpage(),
+          Favoritepage(),
+        ],
+      ),
       bottomNavigationBar: DefaultTextStyle(
         style: const TextStyle(color: Colors.white),
         child: CircleNavBar(
@@ -28,10 +54,8 @@ class _HomepageState extends State<Homepage> {
           color: const Color.fromARGB(255, 0, 0, 0),
           height: 60,
           circleWidth: 60,
-          initIndex: 1,
-          onChanged: (v) {
-            // TODO
-          },
+          initIndex: _selectedIndex,
+          onChanged: _onItemTapped,
           padding: const EdgeInsets.only(left: 16, right: 16, bottom: 20),
           cornerRadius: const BorderRadius.only(
             topLeft: Radius.circular(8),
