@@ -14,16 +14,16 @@ class _HomepageState extends State<Homepage> {
     return Scaffold(
       bottomNavigationBar: ClipRRect(
         borderRadius: const BorderRadius.only(
-          topLeft: Radius.circular(45.0),
-          topRight: Radius.circular(45.0),
+          topLeft: Radius.circular(50.0),
+          topRight: Radius.circular(50.0),
         ),
         child: Container(
-          color: const Color.fromARGB(255, 38, 38, 38),
+          color: Colors.black,
           child: const Padding(
             padding: EdgeInsets.symmetric(horizontal: 15, vertical: 25),
             child: GNav(
               gap: 8,
-              backgroundColor: Color.fromARGB(255, 38, 38, 38),
+              backgroundColor: Colors.black,
               color: Colors.white,
               activeColor: Colors.blueAccent,
               tabBackgroundColor: Colors.white,
