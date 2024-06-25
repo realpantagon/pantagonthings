@@ -14,12 +14,12 @@ class FavoriteLoading extends FavoriteState {}
 class FavoriteLoaded extends FavoriteState {
   final List<AirtableRecord> records;
   final int totalCount;
-  final double totalNet;
+  final double total;
 
-  FavoriteLoaded(this.records, this.totalCount, this.totalNet);
+  FavoriteLoaded(this.records, this.totalCount, this.total);
 
   @override
-  List<Object> get props => [records, totalCount, totalNet];
+  List<Object> get props => [records, totalCount, total];
 }
 
 class FavoriteError extends FavoriteState {

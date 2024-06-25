@@ -18,8 +18,8 @@ class FavoriteBloc extends Bloc<FavoriteEvent, FavoriteState> {
     try {
       final records = await airtableService.fetchFavoriteRecords();
       final totalCount = records.length;
-      final totalNet = records.fold(0.0, (sum, record) => sum + record.total);
-      emit(FavoriteLoaded(records, totalCount, totalNet));
+      final total = records.fold(0.0, (sum, record) => sum + record.total);
+      emit(FavoriteLoaded(records, totalCount, total));
     } catch (e) {
       emit(FavoriteError(e.toString()));
     }

@@ -14,12 +14,12 @@ class AirtableLoading extends AirtableState {}
 class AirtableLoaded extends AirtableState {
   final List<AirtableRecord> records;
   final int totalCount;
-  final double totalNet;
+  final double total;
 
-  AirtableLoaded(this.records, this.totalCount, this.totalNet);
+  AirtableLoaded(this.records, this.totalCount, this.total);
 
   @override
-  List<Object> get props => [records, totalCount, totalNet];
+  List<Object> get props => [records, totalCount, total];
 }
 
 class AirtableError extends AirtableState {

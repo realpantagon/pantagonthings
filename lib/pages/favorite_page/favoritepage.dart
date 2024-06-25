@@ -84,7 +84,7 @@ class FavoritePage extends StatelessWidget {
                                     child: Column(
                                       children: [
                                         Text(
-                                          "${state.totalNet}",
+                                          "${state.total}",
                                           style: const TextStyle(
                                               color: Colors.black,
                                               fontWeight: FontWeight.bold,

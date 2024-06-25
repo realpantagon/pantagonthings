@@ -19,8 +19,8 @@ class AirtableBloc extends Bloc<AirtableEvent, AirtableState> {
     try {
       final records = await airtableService.fetchRecords();
       final totalCount = records.length;
-      final totalNet = records.fold(0.0, (sum, record) => sum + record.total);
-      emit(AirtableLoaded(records, totalCount, totalNet));
+      final total = records.fold(0.0, (sum, record) => sum + record.total);
+      emit(AirtableLoaded(records, totalCount, total));
     } catch (e) {
       emit(AirtableError(e.toString()));
     }
