@@ -1,4 +1,3 @@
-// main.dart
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
@@ -25,7 +24,7 @@ class _MainpageState extends State<Mainpage> {
   Future<void> _fetchData() async {
     final service = AirtableService(
       baseId: 'appUTL1IglUyPejRu',
-      tableName: 'List', // Ensure this matches your Airtable table name
+      tableName: 'List',
       apiKey:
           'patAISgcZTgxiBMYV.56a388e5a648983751a2681138c78f884284fc54a004033211487631fa2f077c',
     );

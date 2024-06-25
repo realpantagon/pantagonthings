@@ -1,4 +1,3 @@
-// item_list.dart
 import 'package:flutter/material.dart';
 import 'package:pantagonthings/response/airtable_record_response.dart';
 
