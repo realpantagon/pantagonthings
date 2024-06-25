@@ -1,12 +1,13 @@
+// airtable_record.dart
 class AirtableRecord {
   final String id;
   final String brand;
   final int itemId;
-  final String type;
+  final List<String> type;
   final String buyFrom;
   final String favorite;
   final String price;
-  final String net;
+  final double net;
   final String warrantyTime;
   final String discount;
   final String name;
@@ -30,17 +31,19 @@ class AirtableRecord {
   factory AirtableRecord.fromJson(Map<String, dynamic> json) {
     return AirtableRecord(
       id: json['id'],
-      brand: json['fields']['Brand'],
+      brand: json['fields']['Brand'] ?? '',
       itemId: json['fields']['ID'],
-      type: json['fields']['Type'],
-      buyFrom: json['fields']['Buy From'],
-      favorite: json['fields']['Favorite'],
-      price: json['fields']['Price'],
-      net: json['fields']['Net'],
-      warrantyTime: json['fields']['Warranty Time'],
-      discount: json['fields']['Discount'],
-      name: json['fields']['Name'],
-      created: json['fields']['Created'],
+      type: List<String>.from(json['fields']['Type']),
+      buyFrom: json['fields']['Buy From'] ?? '',
+      favorite: json['fields']['Favorite'] ?? '',
+      price: json['fields']['Price'] ?? '',
+      net: (json['fields']['Net'] is int)
+          ? (json['fields']['Net'] as int).toDouble()
+          : double.tryParse(json['fields']['Net'].toString()) ?? 0.0,
+      warrantyTime: json['fields']['Warranty Time'] ?? '',
+      discount: json['fields']['Discount'] ?? '',
+      name: json['fields']['Name'] ?? '',
+      created: json['fields']['Created'] ?? '',
     );
   }
 }

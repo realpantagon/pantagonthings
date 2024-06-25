@@ -1,5 +1,4 @@
 import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:pantagonthings/pages/ItemList.dart';
 import 'package:pantagonthings/repository/airtable_repository.dart';
@@ -14,6 +13,8 @@ class Mainpage extends StatefulWidget {
 
 class _MainpageState extends State<Mainpage> {
   List<AirtableRecord> _records = [];
+  int _totalCount = 0;
+  double _totalNet = 0.0;
 
   @override
   void initState() {
@@ -31,6 +32,8 @@ class _MainpageState extends State<Mainpage> {
     final records = await service.fetchRecords();
     setState(() {
       _records = records;
+      _totalCount = records.length;
+      _totalNet = records.fold(0.0, (sum, record) => sum + record.net);
     });
   }
 
@@ -66,9 +69,9 @@ class _MainpageState extends State<Mainpage> {
                             color: Colors.black,
                             borderRadius: BorderRadius.circular(2),
                           ),
-                          child: const Text(
-                            "All Items",
-                            style: TextStyle(color: Colors.white),
+                          child: Text(
+                            "All Items ($_totalCount)",
+                            style: const TextStyle(color: Colors.white),
                           ),
                         ),
                       ),
@@ -76,9 +79,9 @@ class _MainpageState extends State<Mainpage> {
                         child: Container(
                           alignment: Alignment.center,
                           color: Colors.black,
-                          child: const Text(
-                            "Amount",
-                            style: TextStyle(color: Colors.white),
+                          child: Text(
+                            "Amount (\$$_totalNet)",
+                            style: const TextStyle(color: Colors.white),
                           ),
                         ),
                       ),
