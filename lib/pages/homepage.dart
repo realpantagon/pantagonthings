@@ -1,8 +1,8 @@
 import 'package:circle_nav_bar/circle_nav_bar.dart';
 import 'package:flutter/material.dart';
-import 'package:pantagonthings/pages/favoritepage.dart';
-import 'package:pantagonthings/pages/mainpage.dart';
-import 'package:pantagonthings/pages/searchpage.dart';
+import 'package:pantagonthings/pages/favorite_page/favoritepage.dart';
+import 'package:pantagonthings/pages/main_page/main_page.dart';
+import 'package:pantagonthings/pages/search_page/searchpage.dart';
 
 class Homepage extends StatefulWidget {
   const Homepage({Key? key}) : super(key: key);
@@ -35,7 +35,7 @@ class _HomepageState extends State<Homepage> {
         children: const [
           Mainpage(),
           Searchpage(),
-          Favoritepage(),
+          FavoritePage(),
         ],
       ),
       bottomNavigationBar: DefaultTextStyle(

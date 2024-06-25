@@ -7,7 +7,7 @@ class AirtableRecord {
   final String buyFrom;
   final String favorite;
   final String price;
-  final double net;
+  final double total;
   final String warrantyTime;
   final String discount;
   final String name;
@@ -21,7 +21,7 @@ class AirtableRecord {
     required this.buyFrom,
     required this.favorite,
     required this.price,
-    required this.net,
+    required this.total,
     required this.warrantyTime,
     required this.discount,
     required this.name,
@@ -37,8 +37,8 @@ class AirtableRecord {
       buyFrom: json['fields']['Buy From'] ?? '',
       favorite: json['fields']['Favorite'] ?? '',
       price: json['fields']['Price'] ?? '',
-      net: (json['fields']['Net'] is int)
-          ? (json['fields']['Net'] as int).toDouble()
+      total: (json['fields']['Total'] is int)
+          ? (json['fields']['Total'] as int).toDouble()
           : double.tryParse(json['fields']['Net'].toString()) ?? 0.0,
       warrantyTime: json['fields']['Warranty Time'] ?? '',
       discount: json['fields']['Discount'] ?? '',
