@@ -2,7 +2,7 @@ import 'package:circle_nav_bar/circle_nav_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:pantagonthings/pages/favorite_page/favoritepage.dart';
 import 'package:pantagonthings/pages/main_page/main_page.dart';
-import 'package:pantagonthings/pages/search_page/searchpage.dart';
+// import 'package:pantagonthings/pages/search_page/searchpage.dart';
 
 class Homepage extends StatefulWidget {
   const Homepage({Key? key}) : super(key: key);
@@ -27,14 +27,10 @@ class _HomepageState extends State<Homepage> {
     return Scaffold(
       body: PageView(
         controller: _pageController,
-        onPageChanged: (index) {
-          setState(() {
-            _selectedIndex = index;
-          });
-        },
+        physics: const NeverScrollableScrollPhysics(), // Disable swiping
         children: const [
           Mainpage(),
-          Searchpage(),
+          // Searchpage(),
           FavoritePage(),
         ],
       ),
@@ -43,19 +39,21 @@ class _HomepageState extends State<Homepage> {
         child: CircleNavBar(
           activeIcons: const [
             Icon(Icons.home, color: Color.fromARGB(255, 255, 255, 255)),
-            Icon(Icons.search, color: Color.fromARGB(255, 255, 255, 255)),
+            // Icon(Icons.search, color: Color.fromARGB(255, 255, 255, 255)),
             Icon(Icons.favorite, color: Color.fromARGB(255, 255, 255, 255)),
           ],
           inactiveIcons: const [
             Text("Home"),
-            Text("Search"),
+            // Text("Search"),
             Text("Favorite"),
           ],
           color: const Color.fromARGB(255, 0, 0, 0),
           height: 60,
           circleWidth: 60,
           initIndex: _selectedIndex,
-          onChanged: _onItemTapped,
+          onChanged: (index) {
+            _onItemTapped(index);
+          },
           padding: const EdgeInsets.only(left: 16, right: 16, bottom: 20),
           cornerRadius: const BorderRadius.only(
             topLeft: Radius.circular(8),
